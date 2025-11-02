@@ -1,4 +1,4 @@
-# Monorepo Documentation
+# Freestyle PKG Template
 
 ### **Structure**
 
