@@ -28,7 +28,7 @@
         "pkg:init": "pnpm test:ci && changeset",
         "pkg:version": "changeset version",
         "pkg:publish": "changeset publish",
-        "pre-commit": "pnpm check"
+        "pre-commit": "pnpm format"
     },
     "packageManager": "pnpm@10.20.0",
     "devDependencies": {
