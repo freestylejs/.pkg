@@ -13,19 +13,9 @@
     },
     "files": ["dist"],
     "main": "./dist/index.js",
-    "module": "./dist/index.mjs",
+    "module": "./dist/index.js",
     "types": "./dist/index.d.ts",
     "exports": {
-        "./*": {
-            "import": {
-                "types": "./dist/*.d.ts",
-                "default": "./dist/*.js"
-            },
-            "require": {
-                "types": "./dist/*.d.cts",
-                "default": "./dist/*.cjs"
-            }
-        },
         ".": {
             "import": {
                 "types": "./dist/index.d.ts",
@@ -38,9 +28,9 @@
         }
     },
     "scripts": {
-        "build": "tsup",
-        "build:fast": "tsup --no-dts",
-        "dev": "pnpm build --sourcemap --watch",
+        "build": "vp pack",
+        "build:fast": "vp pack --no-dts",
+        "dev": "vp pack --watch --sourcemap",
         "ts:typecheck": "tsc --noEmit --skipLibCheck"
     }
 }

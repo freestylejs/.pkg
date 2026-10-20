@@ -17,10 +17,12 @@ This monorepo uses the following tools:
 | Tool           | Purpose                             |
 | :------------- | :---------------------------------- |
 | **pnpm**       | Dependency management               |
-| **Turborepo**  | High-performance build system       |
+| **Vite+**      | Build, pack, and test toolchain     |
+| **Turborepo**  | High-performance task orchestration |
 | **Changesets** | Versioning and changelog generation |
-| **TypeScript** | Language for type-safe code         |
-| **Vitest**     | Fast unit testing framework         |
+| **TypeScript** | Type-safe code (TypeScript 7)       |
+| **Vitest**     | Unit testing through Vite+          |
+| **Biome**      | Formatter and linter (transitional) |
 
 ---
 
@@ -45,9 +47,29 @@ This monorepo uses the following tools:
 | :----------- | :-------------------------------------------- |
 | `pnpm dev`   | Start development servers for all packages.   |
 | `pnpm build` | Build all packages.                           |
-| `pnpm test`  | Run tests for all packages.                   |
+| `pnpm build:fast` | Build without declaration generation.    |
+| `pnpm test`  | Run tests in watch mode.                      |
+| `pnpm test:coverage` | Run tests once with coverage.          |
 | `pnpm lint`  | Lint all packages.                            |
-| `pnpm clean` | Clean all build artifacts and `node_modules`. |
+| `pnpm ts:typecheck` | Type-check every package.              |
+| `pnpm reset` | Clean build artifacts and `node_modules`.     |
+
+---
+
+### **Migration CLI**
+
+`packages/migrate` contains the policy-driven migration CLI used to move
+template-derived repositories to Vite+ and TypeScript 7.
+
+```bash
+pnpm --filter @freestylejs/migrate build
+node packages/migrate/dist/cli.js scan ../some-repo
+node packages/migrate/dist/cli.js plan ../some-repo
+node packages/migrate/dist/cli.js apply ../some-repo --phase build,ts7 --write
+```
+
+`apply` is a dry-run unless `--write` is passed. App packages, custom build
+configs, and used wildcard exports are preserved and reported as manual actions.
 
 ---
 

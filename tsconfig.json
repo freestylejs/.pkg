@@ -1,4 +1,9 @@
 {
-    "extends": "@freestylejs/config/tsconfig",
-    "include": ["packages/**/*"]
+    "extends": "./tsconfig.ts7.json",
+    "include": ["packages/**/*"],
+    "compilerOptions": {
+        "paths": {
+            "~/*": ["./packages/pkg/src/*"]
+        }
+    }
 }
