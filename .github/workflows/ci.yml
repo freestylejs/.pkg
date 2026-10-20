@@ -1,0 +1,28 @@
+name: CI
+
+on:
+    push:
+        branches: [main, migration/viteplus-ts7]
+    pull_request:
+
+concurrency:
+    group: ci-${{ github.ref }}
+    cancel-in-progress: true
+
+jobs:
+    verify:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - uses: pnpm/action-setup@v4
+              with:
+                  version: 10.20.0
+            - uses: actions/setup-node@v4
+              with:
+                  node-version: 24.19.0
+                  cache: pnpm
+            - run: pnpm install --frozen-lockfile
+            - run: pnpm build
+            - run: pnpm ts:typecheck
+            - run: pnpm report
+            - run: pnpm test:coverage
