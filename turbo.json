@@ -13,6 +13,12 @@
             "dependsOn": ["^build"],
             "outputs": ["dist/**"]
         },
+        "build:fast": {
+            "cache": false,
+            "persistent": false,
+            "dependsOn": ["^build"],
+            "outputs": ["dist/**"]
+        },
         "start": {
             "cache": true
         },

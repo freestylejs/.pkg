@@ -1,0 +1,29 @@
+{
+    "name": "@freestylejs/migrate",
+    "version": "0.0.0",
+    "description": "Policy-driven migration CLI for freestylejs repositories.",
+    "license": "MIT",
+    "type": "module",
+    "private": true,
+    "bin": {
+        "freestyle-migrate": "./dist/cli.js"
+    },
+    "files": ["dist"],
+    "exports": {
+        ".": {
+            "types": "./dist/cli.d.ts",
+            "default": "./dist/cli.js"
+        }
+    },
+    "scripts": {
+        "build": "vp pack",
+        "build:fast": "vp pack --no-dts",
+        "dev": "node --watch src/cli.ts",
+        "migrate": "node src/cli.ts",
+        "ts:typecheck": "tsc --noEmit --skipLibCheck"
+    },
+    "dependencies": {
+        "@babel/parser": "7.28.5",
+        "jsonc-parser": "3.3.1"
+    }
+}
