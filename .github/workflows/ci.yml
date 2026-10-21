@@ -19,6 +19,7 @@ jobs:
         strategy:
             fail-fast: false
             matrix:
+                # freestyle-toolchain:node-matrix
                 node: [22.18.0, 24.19.0]
         steps:
             - uses: actions/checkout@v7
