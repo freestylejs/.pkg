@@ -31,7 +31,7 @@ jobs:
             - run: pnpm check
             - run: pnpm test:coverage
             - run: pnpm verify:package
-            - uses: changesets/action@v1
+            - uses: changesets/action@v2
               with:
                   version: pnpm pkg:version
                   publish: pnpm pkg:publish
