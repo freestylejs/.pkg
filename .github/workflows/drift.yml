@@ -1,0 +1,33 @@
+name: Reference Drift
+
+on:
+    push:
+        branches: [main]
+    pull_request:
+
+concurrency:
+    group: drift-${{ github.ref }}
+    cancel-in-progress: true
+
+permissions:
+    contents: read
+
+jobs:
+    drift:
+        runs-on: ubuntu-latest
+        timeout-minutes: 10
+        steps:
+            - uses: actions/checkout@v7
+            - uses: actions/checkout@v7
+              with:
+                  repository: freestylejs/create-pkg
+                  path: tooling
+            - uses: pnpm/action-setup@v6
+              with:
+                  version: 10.20.0
+            - uses: actions/setup-node@v7
+              with:
+                  node-version-file: .nvmrc
+                  cache: pnpm
+            - run: pnpm --dir tooling install --frozen-lockfile
+            - run: cd tooling && node scripts/drift-check.mjs --reference ..
