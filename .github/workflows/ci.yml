@@ -2,7 +2,7 @@ name: CI
 
 on:
     push:
-        branches: [main, migration/oxc-turbo]
+        branches: [main]
     pull_request:
 
 concurrency:
