@@ -49,9 +49,12 @@ export function distInventory(root: string): Record<string, string[]> {
         }
     }
     visit(root)
-    for (const key of Object.keys(out)) out[key]?.sort()
+    for (const key of Object.keys(out)) {
+        const files = out[key]
+        if (files) out[key] = files.toSorted()
+    }
     return Object.fromEntries(
-        Object.entries(out).sort(([a], [b]) => a.localeCompare(b))
+        Object.entries(out).toSorted(([a], [b]) => a.localeCompare(b))
     )
 }
 

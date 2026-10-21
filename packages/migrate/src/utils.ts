@@ -144,7 +144,7 @@ export function walkFiles(
     }
 
     walk(root, 0)
-    return out.sort()
+    return out.toSorted()
 }
 
 export function walkPackageJsonFiles(root: string): string[] {

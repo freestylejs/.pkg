@@ -37,19 +37,19 @@ refused unless `--allow-dirty` is used on a disposable copy.
   lockfile.
 - Unsupported dynamic configs and app packages fail closed.
 - The CLI never publishes packages or commits automatically.
-- Generated files are formatted with the repository's Biome config when Biome
-  is available.
+- Generated files are formatted with Oxfmt when available, then Biome as a
+  fallback for repositories that have not migrated yet.
 
 ## Exit codes
 
-| Code | Meaning |
-| --- | --- |
-| 0 | success |
-| 2 | usage error |
-| 3 | unsupported migration item |
-| 4 | unsafe Git state |
-| 5 | verification failure |
-| 6 | apply failure and rollback |
+| Code | Meaning                    |
+| ---- | -------------------------- |
+| 0    | success                    |
+| 2    | usage error                |
+| 3    | unsupported migration item |
+| 4    | unsafe Git state           |
+| 5    | verification failure       |
+| 6    | apply failure and rollback |
 
 ## Package roles
 
