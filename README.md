@@ -40,22 +40,28 @@ This monorepo uses the following tools:
     pnpm install
     ```
 
+Requirements:
+
+- Node.js `^22.18.0 || ^24.11.0 || >=26.0.0` (`.nvmrc` pins 24.19.0)
+- pnpm `10.20.0`
+
 ---
 
 ### **Development**
 
-| Command              | Description                                 |
-| :------------------- | :------------------------------------------ |
-| `pnpm dev`           | Start development servers for all packages. |
-| `pnpm build`         | Build all packages.                         |
-| `pnpm build:fast`    | Build without declaration generation.       |
-| `pnpm test`          | Run tests in watch mode.                    |
-| `pnpm test:coverage` | Run tests once with coverage.               |
-| `pnpm lint`          | Lint all packages.                          |
-| `pnpm format`        | Format all files with Oxfmt.                |
-| `pnpm check`         | Run Oxlint and verify formatting.           |
-| `pnpm ts:typecheck`  | Type-check every package.                   |
-| `pnpm reset`         | Clean build artifacts and `node_modules`.   |
+| Command               | Description                                      |
+| :-------------------- | :----------------------------------------------- |
+| `pnpm dev`            | Start development servers for all packages.      |
+| `pnpm build`          | Build all packages.                              |
+| `pnpm build:fast`     | Build without declaration generation.            |
+| `pnpm test`           | Run tests in watch mode.                         |
+| `pnpm test:coverage`  | Run tests once with coverage.                    |
+| `pnpm lint`           | Lint all packages.                               |
+| `pnpm format`         | Format all files with Oxfmt.                     |
+| `pnpm check`          | Run Oxlint and verify formatting.                |
+| `pnpm ts:typecheck`   | Type-check every package.                        |
+| `pnpm verify:package` | Validate exports, tarball, and consumer imports. |
+| `pnpm reset`          | Clean build artifacts and `node_modules`.        |
 
 ---
 

@@ -1,0 +1,40 @@
+name: Release
+
+on:
+    push:
+        branches: [main]
+
+concurrency:
+    group: release-${{ github.ref }}
+    cancel-in-progress: false
+
+permissions:
+    contents: write
+    pull-requests: write
+
+jobs:
+    release:
+        runs-on: ubuntu-latest
+        timeout-minutes: 15
+        steps:
+            - uses: actions/checkout@v5
+            - uses: pnpm/action-setup@v4
+              with:
+                  version: 10.20.0
+            - uses: actions/setup-node@v5
+              with:
+                  node-version: 24.19.0
+                  cache: pnpm
+            - run: pnpm install --frozen-lockfile
+            - run: pnpm build
+            - run: pnpm ts:typecheck
+            - run: pnpm check
+            - run: pnpm test:coverage
+            - run: pnpm verify:package
+            - uses: changesets/action@v1
+              with:
+                  version: pnpm pkg:version
+                  publish: pnpm pkg:publish
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

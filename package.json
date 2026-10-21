@@ -2,6 +2,7 @@
     "name": "@freestylejs/monorepo-template",
     "version": "1.0.0",
     "type": "module",
+    "private": true,
     "description": "Monorepo template for freestyle codebase.",
     "keywords": [
         "freestyle",
@@ -10,6 +11,18 @@
     ],
     "author": "freestyle",
     "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/freestylejs/.pkg.git"
+    },
+    "bugs": {
+        "url": "https://github.com/freestylejs/.pkg/issues"
+    },
+    "homepage": "https://github.com/freestylejs/.pkg#readme",
+    "engines": {
+        "node": "^22.18.0 || ^24.11.0 || >=26.0.0",
+        "pnpm": ">=10.20.0"
+    },
     "scripts": {
         "dev": "turbo run build && turbo run dev",
         "build": "pnpm reset:dist && turbo run build --no-cache --force",
@@ -19,12 +32,13 @@
         "test:watch": "vitest --watch -u",
         "test:coverage": "vitest run --coverage",
         "test:ci": "pnpm build && pnpm check && pnpm test:coverage",
+        "verify:package": "pnpm build && publint packages/pkg && publint packages/migrate && attw --pack packages/pkg && node scripts/verify-package.mjs",
         "ts:typecheck": "turbo run ts:typecheck",
         "ts:perf": "rimraf ts-perf && tsc --noEmit --generateTrace ts-perf",
-        "lint": "oxlint --fix",
+        "lint": "oxlint --fix --deny-warnings",
         "format": "oxfmt .",
-        "check": "oxlint && oxfmt --check .",
-        "report": "oxlint",
+        "check": "oxlint --deny-warnings && oxfmt --check .",
+        "report": "oxlint --deny-warnings",
         "reset:turbo": "turbo run clean",
         "reset:dist": "pnpm -r --parallel exec rimraf dist .turbo",
         "reset:modules": "pnpm -r --parallel exec rimraf node_modules && rimraf node_modules .turbo",
@@ -37,6 +51,7 @@
     "packageManager": "pnpm@10.20.0",
     "devDependencies": {
         "@freestylejs/config": "1.3.0",
+        "@arethetypeswrong/cli": "0.18.5",
         "@changesets/cli": "2.29.7",
         "@types/node": "24.10.0",
         "@vitest/coverage-v8": "5.0.5",
@@ -44,6 +59,7 @@
         "lint-staged": "16.2.6",
         "oxfmt": "0.73.0",
         "oxlint": "1.88.0",
+        "publint": "0.3.25",
         "rimraf": "6.1.0",
         "tsdown": "0.23.1",
         "turbo": "2.6.0",
