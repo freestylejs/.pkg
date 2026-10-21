@@ -8,13 +8,13 @@
             "persistent": true
         },
         "build": {
-            "cache": false,
+            "cache": true,
             "persistent": false,
             "dependsOn": ["^build"],
             "outputs": ["dist/**"]
         },
         "build:fast": {
-            "cache": false,
+            "cache": true,
             "persistent": false,
             "dependsOn": ["^build"],
             "outputs": ["dist/**"]
