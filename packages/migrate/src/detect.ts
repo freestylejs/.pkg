@@ -118,7 +118,7 @@ function discoverPackageJsonFiles(root: string, patterns: string[]): string[] {
                     )
                 )
         )
-        .sort()
+        .toSorted()
 }
 
 function resolveExtends(
@@ -520,7 +520,7 @@ function findTypeScriptApiConsumers(pkg: Record<string, unknown>): string[] {
             if (TYPESCRIPT_API_CONSUMERS.includes(name)) all.add(name)
         }
     }
-    return [...all].sort()
+    return [...all].toSorted()
 }
 
 function sourceUsage(root: string, packageName: string): boolean {

@@ -66,10 +66,10 @@ You have two primary ways to signal a breaking change:
     - The footer **MUST** contain the uppercase text `BREAKING CHANGE:`, followed by a detailed description of the breaking change.
     - _Example:_
 
-      ```
-      feat: upgrade Node version
+        ```
+        feat: upgrade Node version
 
-      BREAKING CHANGE: use JavaScript features not available in Node 6.
-      ```
+        BREAKING CHANGE: use JavaScript features not available in Node 6.
+        ```
 
 > **Note:** If the `!` is used in the prefix, the `BREAKING CHANGE:` footer **MAY** be omitted, but the commit body **SHALL** be used to describe the nature and migration path of the breaking change.

@@ -8,7 +8,9 @@
     "bin": {
         "freestyle-migrate": "./dist/cli.js"
     },
-    "files": ["dist"],
+    "files": [
+        "dist"
+    ],
     "exports": {
         ".": {
             "types": "./dist/cli.d.ts",
@@ -16,8 +18,8 @@
         }
     },
     "scripts": {
-        "build": "vp pack",
-        "build:fast": "vp pack --no-dts",
+        "build": "tsdown",
+        "build:fast": "tsdown --no-dts",
         "dev": "node --watch src/cli.ts",
         "migrate": "node src/cli.ts",
         "ts:typecheck": "tsc --noEmit --skipLibCheck"

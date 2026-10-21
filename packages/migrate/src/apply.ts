@@ -24,10 +24,7 @@ interface Backup {
     content: string | undefined
 }
 
-export function applyPlan(
-    plan: MigrationPlan,
-    options: { allowDirty?: boolean } = {}
-): ApplyResult {
+export function applyPlan(plan: MigrationPlan): ApplyResult {
     const root = plan.repo
     const backupDir = mkdtempSync(join(tmpdir(), 'freestyle-migrate-'))
     const backups: Backup[] = []
@@ -82,7 +79,7 @@ export function applyPlan(
     }
 
     const rollback = () => {
-        for (const item of [...backups].reverse()) {
+        for (const item of [...backups].toReversed()) {
             if (item.existed) {
                 ensureDir(dirname(item.path))
                 writeFileSync(item.path, item.content ?? '', 'utf8')

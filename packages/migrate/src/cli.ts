@@ -187,21 +187,36 @@ function commandApply(
     let cleanup: (() => void) | undefined
     let verifyFailed = false
     try {
-        const result = applyPlan(plan, { allowDirty: args.allowDirty })
+        const result = applyPlan(plan)
         applied = result.applied
         rollback = result.rollback
         cleanup = result.cleanup
 
         const formattable = applied.filter((path) => pathExists(path))
         if (formattable.length > 0) {
-            const format = runCommand(
-                'pnpm',
-                ['exec', 'biome', 'format', '--write', ...formattable],
-                args.repo
-            )
-            if (format.exitCode !== 0) {
+            const oxfmtBin = join(args.repo, 'node_modules', '.bin', 'oxfmt')
+            const biomeBin = join(args.repo, 'node_modules', '.bin', 'biome')
+            if (pathExists(oxfmtBin)) {
+                const format = runCommand(
+                    'pnpm',
+                    ['exec', 'oxfmt', ...formattable],
+                    args.repo
+                )
+                if (format.exitCode !== 0) {
+                    console.warn('note: oxfmt could not format generated files')
+                }
+            } else if (pathExists(biomeBin)) {
+                const format = runCommand(
+                    'pnpm',
+                    ['exec', 'biome', 'format', '--write', ...formattable],
+                    args.repo
+                )
+                if (format.exitCode !== 0) {
+                    console.warn('note: Biome could not format generated files')
+                }
+            } else {
                 console.warn(
-                    'note: Biome is unavailable or could not format generated files'
+                    'note: no supported formatter found for generated files'
                 )
             }
         }
