@@ -16,6 +16,8 @@ jobs:
     release:
         runs-on: ubuntu-latest
         timeout-minutes: 15
+        env:
+            NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         steps:
             - uses: actions/checkout@v7
             - uses: pnpm/action-setup@v6
@@ -31,7 +33,9 @@ jobs:
             - run: pnpm check
             - run: pnpm test:coverage
             - run: pnpm verify:package
-            - uses: changesets/action@v1
+            - name: Create release PR or publish
+              if: env.NPM_TOKEN != ''
+              uses: changesets/action@v1
               with:
                   version: pnpm pkg:version
                   publish: pnpm pkg:publish
