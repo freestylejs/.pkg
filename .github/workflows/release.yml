@@ -17,11 +17,11 @@ jobs:
         runs-on: ubuntu-latest
         timeout-minutes: 15
         steps:
-            - uses: actions/checkout@v5
-            - uses: pnpm/action-setup@v4
+            - uses: actions/checkout@v7
+            - uses: pnpm/action-setup@v6
               with:
                   version: 10.20.0
-            - uses: actions/setup-node@v5
+            - uses: actions/setup-node@v7
               with:
                   node-version: 24.19.0
                   cache: pnpm
@@ -31,7 +31,7 @@ jobs:
             - run: pnpm check
             - run: pnpm test:coverage
             - run: pnpm verify:package
-            - uses: changesets/action@v1
+            - uses: changesets/action@v2
               with:
                   version: pnpm pkg:version
                   publish: pnpm pkg:publish
