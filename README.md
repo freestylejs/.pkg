@@ -1,5 +1,14 @@
 # Freestyle PKG Template
 
+> This repository is the reference implementation for the freestylejs package
+> template. To create a new project, use the generator instead of forking:
+>
+> ```bash
+> pnpm create @freestylejs/pkg my-lib
+> ```
+>
+> Generator: [freestylejs/create-pkg](https://github.com/freestylejs/create-pkg)
+
 ### **Structure**
 
 The repository is organized as follows:
@@ -67,8 +76,8 @@ Requirements:
 
 ### **Migration CLI**
 
-`packages/migrate` contains the policy-driven migration CLI used to move
-template-derived repositories to Vite+ and TypeScript 7.
+`packages/migrate` contains the policy-driven migration CLI for existing
+template-derived repositories.
 
 ```bash
 pnpm --filter @freestylejs/migrate build
@@ -79,6 +88,8 @@ node packages/migrate/dist/cli.js apply ../some-repo --phase build,ts7 --write
 
 `apply` is a dry-run unless `--write` is passed. App packages, custom build
 configs, and used wildcard exports are preserved and reported as manual actions.
+
+For new projects, use `pnpm create @freestylejs/pkg` instead.
 
 ---
 
