@@ -5,6 +5,18 @@
     "license": "MIT",
     "type": "module",
     "private": true,
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/freestylejs/.pkg.git",
+        "directory": "packages/migrate"
+    },
+    "bugs": {
+        "url": "https://github.com/freestylejs/.pkg/issues"
+    },
+    "homepage": "https://github.com/freestylejs/.pkg/tree/main/packages/migrate#readme",
+    "engines": {
+        "node": "^22.18.0 || ^24.11.0 || >=26.0.0"
+    },
     "bin": {
         "freestyle-migrate": "./dist/cli.js"
     },
@@ -12,10 +24,7 @@
         "dist"
     ],
     "exports": {
-        ".": {
-            "types": "./dist/cli.d.ts",
-            "default": "./dist/cli.js"
-        }
+        ".": "./dist/cli.js"
     },
     "scripts": {
         "build": "tsdown",

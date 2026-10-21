@@ -3,11 +3,23 @@
     "author": "freestyle",
     "version": "0.0.1",
     "description": "DESCRIPTION",
-    "license": "UNLICENSED",
+    "license": "MIT",
     "type": "module",
     "keywords": [],
     "sideEffects": false,
     "private": true,
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/freestylejs/.pkg.git",
+        "directory": "packages/pkg"
+    },
+    "bugs": {
+        "url": "https://github.com/freestylejs/.pkg/issues"
+    },
+    "homepage": "https://github.com/freestylejs/.pkg/tree/main/packages/pkg#readme",
+    "engines": {
+        "node": "^22.18.0 || ^24.11.0 || >=26.0.0"
+    },
     "publishConfig": {
         "access": "restricted"
     },
